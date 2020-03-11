@@ -171,10 +171,10 @@ if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Generate new converage dataset',
 									 formatter_class=argparse.RawTextHelpFormatter)
 
-	parser.add_argument('-1', type=str, metavar='<fastq1>',
+	parser.add_argument('--1', type=str, metavar='<fastq1>',
 						help='Specify fastq files for recalculation, comma seperated.',
 						required=True)
-	parser.add_argument('-2', type=str, metavar='<fastq2>',
+	parser.add_argument('--2', type=str, metavar='<fastq2>',
 						help='Specify fastq files for recalculation, comma seperated.',
 						required=True)
 
