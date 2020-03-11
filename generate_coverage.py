@@ -4,8 +4,8 @@ import random
 import subprocess
 import subprocess
 import assembly_stats
-OUTPUT_FRAG_1_FILE =  "data/output_frag_1.fastq"
-OUTPUT_FRAG_2_FILE =  "data/output_frag_2.fastq"
+OUTPUT_FRAG_1_FILE =  "/data/roy/bio_informatics/Staphylococcus_aureus/frag_1.fastq"
+OUTPUT_FRAG_2_FILE =  "/data/roy/bio_informatics/Staphylococcus_aureus/frag_2.fastq"
 SPADES_EXE_LOCATION = "/data/roy/bio_informatics/SPAdes-3.12.0-Linux/bin/spades.py"
 OUTPUT_DIR = "./output_dir"
 
@@ -154,8 +154,7 @@ def single_ineration_per_corr(fastq_files, coverage_ratio):
 	get_random_fragments(fastq_files,total_reads_count,new_reads_count)
 	#run spades on sampled data
 
-	res = subprocess.call(["python3",SPADES_EXE_LOCATION,"-1", OUTPUT_FRAG_1_FILE, "-2", OUTPUT_FRAG_2_FILE,"-o" ,OUTPUT_DIR])
-	print(res)
+	res = subprocess.call(["python3" , SPADES_EXE_LOCATION,"-1", OUTPUT_FRAG_1_FILE, "-2", OUTPUT_FRAG_2_FILE,"-o" ,OUTPUT_DIR])
 # 	get stats of per coverage
 	stats = assembly_stats.calc_stats(os.path.join(OUTPUT_DIR, "scaffolds.fasta"))
 # 	TODO delete later
