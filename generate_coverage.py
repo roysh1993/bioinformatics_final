@@ -137,9 +137,10 @@ def get_fragments_by_identifier(fastq_file,frag_identifiers,output_filename =OUT
 
 							if frag_identifiers:
 								if frag_identifier == frag_identifiers[0]+"2":
-									# print(frag_identifiers.pop(0) + "2")
 									out.write(frag_data)
 									out.write("\n")
+									frag_identifiers.pop(0)
+
 
 						else:
 							i = 0
