@@ -45,7 +45,7 @@ def calculate_new_fragment_count(total_frag_count,new_converage):
 
 
 def get_random_fragments(fastq_files,total_frag_count,new_frag_count):
-	frag_random_indexes = sorted(random.sample(range(1, total_frag_count), new_frag_count))
+	frag_random_indexes = sorted(random.sample(range(1, total_frag_count + 1), new_frag_count))
 	# print ("random indices:", frag_random_indexes)
 	frag_identifiers = get_fragments_by_index(fastq_files[0],frag_random_indexes)
 	# print("##########")
