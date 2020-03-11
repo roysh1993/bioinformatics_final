@@ -171,10 +171,10 @@ if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Generate new converage dataset',
 									 formatter_class=argparse.RawTextHelpFormatter)
 
-	parser.add_argument('--1', type=str, metavar='<fastq1>',
+	parser.add_argument('--f1', type=str, metavar='<fastq1>',
 						help='Specify fastq files for recalculation, comma seperated.',
 						required=True)
-	parser.add_argument('--2', type=str, metavar='<fastq2>',
+	parser.add_argument('--f2', type=str, metavar='<fastq2>',
 						help='Specify fastq files for recalculation, comma seperated.',
 						required=True)
 
@@ -187,6 +187,6 @@ if __name__ == '__main__':
 	print(fastq_files)
 	total_frag_count = count_fragments(fastq_files)
 	print(total_frag_count)
-	new_frag_count = calculate_new_fragment_count(total_frag_count,args.coverage)
+	new_frag_count = calculate_new_fragment_count(total_frag_count, args.coverage)
 	print(new_frag_count)
 	get_random_fragments(fastq_files,total_frag_count,new_frag_count)
