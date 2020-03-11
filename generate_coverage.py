@@ -46,7 +46,7 @@ def calculate_new_fragment_count(total_frag_count,new_converage):
 
 def get_random_fragments(fastq_files,total_frag_count,new_frag_count):
 	frag_random_indexes = sorted(random.sample(range(1, total_frag_count), new_frag_count))
-	print (f'random indices: {frag_random_indexes}')
+	print ("random indices:", frag_random_indexes)
 	frag_identifiers = get_fragments_by_index(fastq_files[0],frag_random_indexes)
 	print("##########")
 	print (frag_identifiers)
@@ -181,11 +181,10 @@ if __name__ == '__main__':
 
 	args = parser.parse_args()
 	fastq_files = args.fastq.split(",")
-	#
-	# print(fastq_files)
-	# total_frag_count = count_fragments(fastq_files)
-	# print(total_frag_count)
-	# new_frag_count = calculate_new_fragment_count(total_frag_count, 0.5)
-	# print (new_frag_count)
-	# get_random_fragments(fastq_files,total_frag_count,new_frag_count)
-	single_ineration_per_corr(fastq_files,args.coverage)
+
+	print(fastq_files)
+	total_frag_count = count_fragments(fastq_files)
+	print(total_frag_count)
+	new_frag_count = calculate_new_fragment_count(total_frag_count,parser.coverage)
+	print (new_frag_count)
+	get_random_fragments(fastq_files,total_frag_count,new_frag_count)
