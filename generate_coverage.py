@@ -156,7 +156,7 @@ def single_ineration_per_corr(fastq_files, coverage_ratio):
 		#run spades on sampled data
 	else:
 		OUTPUT_FRAG_1_FILE = "/data/roy/bio_informatics/Staphylococcus_aureus/frag_1.fastq"
-		OUTPUT_FRAG_2_FILE = "/data/roy/bio_informatics/Staphylococcus_aureus/frag_1.fastq"
+		OUTPUT_FRAG_2_FILE = "/data/roy/bio_informatics/Staphylococcus_aureus/frag_2.fastq"
 
 	res = os.system("python3 " + SPADES_EXE_LOCATION +" -1 " + OUTPUT_FRAG_1_FILE + " -2 " + OUTPUT_FRAG_2_FILE + " -o " + OUTPUT_DIR)
 # 	get stats of per coverage
