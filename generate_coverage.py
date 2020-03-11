@@ -183,10 +183,10 @@ if __name__ == '__main__':
 						required=True)
 
 	args = parser.parse_args()
-	fastq_files = [parser.fastq1, parser.fastq2]
+	fastq_files = [args.fastq1, args.fastq2]
 	print(fastq_files)
 	total_frag_count = count_fragments(fastq_files)
 	print(total_frag_count)
-	new_frag_count = calculate_new_fragment_count(total_frag_count,parser.coverage)
+	new_frag_count = calculate_new_fragment_count(total_frag_count,args.coverage)
 	print(new_frag_count)
 	get_random_fragments(fastq_files,total_frag_count,new_frag_count)
