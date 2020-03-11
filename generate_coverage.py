@@ -46,11 +46,11 @@ def calculate_new_fragment_count(total_frag_count,new_converage):
 
 def get_random_fragments(fastq_files,total_frag_count,new_frag_count):
 	frag_random_indexes = sorted(random.sample(range(1, total_frag_count), new_frag_count))
-	print ("random indices:", frag_random_indexes)
+	# print ("random indices:", frag_random_indexes)
 	frag_identifiers = get_fragments_by_index(fastq_files[0],frag_random_indexes)
-	print("##########")
-	print (frag_identifiers)
-	print("##########")
+	# print("##########")
+	# print (frag_identifiers)
+	# print("##########")
 
 	get_fragments_by_identifier(fastq_files[1],frag_identifiers)
 
@@ -90,7 +90,7 @@ def get_fragments_by_index(fastq_file,frag_indexes, output_filename= OUTPUT_FRAG
 
 							if frag_indexes:
 								if frag_count == frag_indexes[0]:
-									print(frag_indexes.pop(0))
+									# print(frag_indexes.pop(0))
 									out.write(frag_data)
 									out.write("\n")
 									frag_identifiers.append(frag_identifier[:-1])
@@ -109,7 +109,6 @@ def get_fragments_by_identifier(fastq_file,frag_identifiers,output_filename =OUT
 	frag_data = ""
 
 	with open(fastq_file) as f,open(output_filename,"w") as out:
-		print("HI")
 		i = 0
 		for line in f:
 			# [1] Start of fragment
@@ -136,7 +135,7 @@ def get_fragments_by_identifier(fastq_file,frag_identifiers,output_filename =OUT
 
 							if frag_identifiers:
 								if frag_identifier == frag_identifiers[0]+"2":
-									print(frag_identifiers.pop(0) + "2")
+									# print(frag_identifiers.pop(0) + "2")
 									out.write(frag_data)
 									out.write("\n")
 
