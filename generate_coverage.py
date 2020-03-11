@@ -184,9 +184,4 @@ if __name__ == '__main__':
 
 	args = parser.parse_args()
 	fastq_files = [args.file1, args.file2]
-	print(fastq_files)
-	total_frag_count = count_fragments(fastq_files)
-	print(total_frag_count)
-	new_frag_count = calculate_new_fragment_count(total_frag_count, args.coverage)
-	print(new_frag_count)
-	get_random_fragments(fastq_files,total_frag_count,new_frag_count)
+	single_ineration_per_corr(fastq_files,args.coverage)
