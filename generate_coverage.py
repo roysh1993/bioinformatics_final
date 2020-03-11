@@ -153,7 +153,9 @@ def single_ineration_per_corr(fastq_files, coverage_ratio):
 	# get samples
 	get_random_fragments(fastq_files,total_reads_count,new_reads_count)
 	#run spades on sampled data
-	subprocess.call(["python3",SPADES_EXE_LOCATION,"-1", OUTPUT_FRAG_1_FILE, "-2", OUTPUT_FRAG_2_FILE,"-o" ,OUTPUT_DIR])
+
+	res = subprocess.call(["python3",SPADES_EXE_LOCATION,"-1", OUTPUT_FRAG_1_FILE, "-2", OUTPUT_FRAG_2_FILE,"-o" ,OUTPUT_DIR])
+	print(res)
 # 	get stats of per coverage
 	stats = assembly_stats.calc_stats(os.path.join(OUTPUT_DIR, "scaffolds.fasta"))
 # 	TODO delete later
