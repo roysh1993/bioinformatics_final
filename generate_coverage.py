@@ -184,12 +184,15 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files):
 			print("###################STATS##########################")
 			print(stats)
 			stats_list.append(stats)
-
+		#save stats
+		plots.save_stats(stats_per_cov, OUTPUT_DIR)
+		print("stats saved at {}".format(OUTPUT_DIR))
 		stats_per_cov[cov] = stats_list
 
 	plots.generate_plots(stats_per_cov)
+	print("plots saved at {}".format(OUTPUT_DIR))
+
 	# save stats_list
-	plots.save_stats(stats_per_cov,OUTPUT_DIR)
 	print("FINISHED :)")
 	return
 
