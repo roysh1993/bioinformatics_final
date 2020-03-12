@@ -176,8 +176,8 @@ def single_ineration_per_corr(fastq_files, coverage_ratio,output_dir=OUTPUT_DIR,
 def generate_plots(stats_list,N50_list, directory = OUTPUT_DIR):
 	cov_list = []
 	n_list = []
-	for i in N50_list:
-		cov,n50 = N50_list
+	for tuple in N50_list:
+		cov,n50 = tuple
 		cov_list.append(cov)
 		n_list.append(n50)
 
@@ -210,7 +210,7 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files):
 			print(stats)
 			N50 += stats["Scaffold Stats"]["N50"]
 			stats_list.append(stats)
-		N50_list.append((cov,N50/epochs))
+		N50_list.append((cov, N50/epochs))
 		stats_list.append((cov,stats_list))
 	generate_plots(stats_list,N50_list)
 	# save stats_list
@@ -250,5 +250,5 @@ if __name__ == '__main__':
 	# fastq_files = ["data/tiny_frag_1.fastq","data/tiny_frag_1.fastq"]
 
 
-	simualte_over_coverage(0.2,1.0,0.2,1,fastq_files)
+	simualte_over_coverage(0.2,0.61,0.2,1,fastq_files)
 
