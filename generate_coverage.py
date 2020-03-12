@@ -3,6 +3,8 @@ import sys
 import random
 import subprocess
 import subprocess
+import matplotlib
+matplotlib.use('Agg')
 import assembly_stats
 import numpy as np
 import matplotlib.pyplot as plt
@@ -181,7 +183,7 @@ def generate_plots(stats_list,N50_list, directory = OUTPUT_DIR):
 		cov_list.append(cov)
 		n_list.append(n50)
 
-	res = plt.plot(cov_list, n_list)
+	plt.plot(cov_list, n_list)
 	plt.xlabel("coverage")
 	plt.ylabel("N50 avg")
 	plt.title("N50 per cov")
@@ -250,5 +252,5 @@ if __name__ == '__main__':
 	# fastq_files = ["data/tiny_frag_1.fastq","data/tiny_frag_1.fastq"]
 
 
-	simualte_over_coverage(0.2,0.61,0.2,1,fastq_files)
+	simualte_over_coverage(0.2,0.55,0.2,1,fastq_files)
 
