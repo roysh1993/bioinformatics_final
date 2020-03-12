@@ -6,7 +6,7 @@ SPADES_EXE_LOCATION = "/data/roy/bio_informatics/SPAdes-3.12.0-Linux/bin/spades.
 OUTPUT_DIR = "output_dir"
 #constants
 START_COV = 0.1
-END_COV = 0.23
+END_COV = 1.00001
 COV_INTERVAL = 0.1
-NUM_OF_EPOCHS = 2
+NUM_OF_EPOCHS = 5
 
