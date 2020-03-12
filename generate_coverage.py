@@ -187,7 +187,7 @@ def generate_plots(stats_list,N50_list, directory = OUTPUT_DIR):
 	plt.xlabel("coverage")
 	plt.ylabel("N50 avg")
 	plt.title("N50 per cov")
-	plt.savefig(os.path.join(output_dir,"N50_fig.png"))
+	plt.savefig(os.path.join(directory,"N50_fig.png"))
 	return
 
 
