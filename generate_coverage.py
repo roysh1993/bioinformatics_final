@@ -181,6 +181,7 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files):
 		N50 = 0
 		stats_list = []
 		for i in range(epochs):
+			print("EPHOCH: {} with cov {}".format(i,cov))
 			stats = single_ineration_per_corr(fastq_files,cov)
 			print("###################STATS##########################")
 			print(stats)
