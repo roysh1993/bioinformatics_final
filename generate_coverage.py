@@ -149,16 +149,18 @@ def get_fragments_by_identifier(fastq_file,frag_identifiers,output_filename =OUT
 
 def single_ineration_per_corr(fastq_files, coverage_ratio):
 	if coverage_ratio != 1.0:
+		semgented_file1 = OUTPUT_FRAG_1_FILE
+		semgented_file2 = OUTPUT_FRAG_2_FILE
 		total_reads_count = count_fragments(fastq_files)
 		new_reads_count = calculate_new_fragment_count(total_reads_count,coverage_ratio)
 		# get samples
 		get_random_fragments(fastq_files,total_reads_count,new_reads_count)
 		#run spades on sampled data
 	else:
-		OUTPUT_FRAG_1_FILE = "/data/roy/bio_informatics/Staphylococcus_aureus/frag_1.fastq"
-		OUTPUT_FRAG_2_FILE = "/data/roy/bio_informatics/Staphylococcus_aureus/frag_2.fastq"
+		semgented_file1 = "/data/roy/bio_informatics/Staphylococcus_aureus/frag_1.fastq"
+		semgented_file2 = "/data/roy/bio_informatics/Staphylococcus_aureus/frag_2.fastq"
 
-	res = os.system("python3 " + SPADES_EXE_LOCATION +" -1 " + OUTPUT_FRAG_1_FILE + " -2 " + OUTPUT_FRAG_2_FILE + " -o " + OUTPUT_DIR)
+	res = os.system("python3 " + SPADES_EXE_LOCATION +" -1 " + semgented_file1 + " -2 " + semgented_file2 + " -o " + OUTPUT_DIR)
 # 	get stats of per coverage
 	stats = assembly_stats.calc_stats(os.path.join(OUTPUT_DIR, "scaffolds.fasta"))
 # 	TODO delete later
