@@ -208,7 +208,7 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files):
 			stats = single_ineration_per_corr(fastq_files,cov)
 			print("###################STATS##########################")
 			print(stats)
-			N50 += stats["N50"]
+			N50 += stats["Scaffold Stats"]["N50"]
 			stats_list.append(stats)
 		N50_list.append((cov,N50/epochs))
 		stats_list.append((cov,stats_list))
