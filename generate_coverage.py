@@ -168,10 +168,14 @@ def single_ineration_per_corr(fastq_files, coverage_ratio):
 	return stats
 
 def generate_plots(stats_list,N50_list):
-	# for i in N50_list:
-	# 	cov,n50 = N50_list
+	cov_list = []
+	n_list = []
+	for i in N50_list:
+		cov,n50 = N50_list
+		cov_list.append(cov)
+		n_list.append(n50)
 
-	res = plt.plot(N50_list)
+	res = plt.plot(cov_list,n_list)
 	plt.xlabel("coverage")
 	plt.ylabel("N50 avg")
 	plt.title("N50 per cov")
@@ -206,29 +210,24 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files):
 
 
 if __name__ == '__main__':
-	# import argparse
-	#
-	# parser = argparse.ArgumentParser(description='Generate new converage dataset',
-	# 								 formatter_class=argparse.RawTextHelpFormatter)
-	#
-	# parser.add_argument("-1",'--file1', type=str, metavar='<fastq1>',
-	# 					help='Specify fastq files for recalculation, comma seperated.',
-	# 					required=True)
-	# parser.add_argument("-2",'--file2', type=str, metavar='<fastq2>',
-	# 					help='Specify fastq files for recalculation, comma seperated.',
-	# 					required=True)
-	#
-	# parser.add_argument('--coverage', type=float, metavar='<coverage>',
-	# 					help='Specify new coverage.',
-	# 					required=True)
-	#
-	# args = parser.parse_args()
-	# fastq_files = [args.file1, args.file2]
-	# single_ineration_per_corr(fastq_files,args.coverage)
-	for i in np.arange(1,10,1):
-		print(i)
+	import argparse
 
-	#
-	# fastq_files =["data/tiny_frag_1.fastq", "data/tiny_frag_2.fastq"]
-	# coverage = 0.9
-	# single_ineration_per_corr(fastq_files, coverage)
+	parser = argparse.ArgumentParser(description='Generate new converage dataset',
+									 formatter_class=argparse.RawTextHelpFormatter)
+
+	parser.add_argument("-1",'--file1', type=str, metavar='<fastq1>',
+						help='Specify fastq files for recalculation, comma seperated.',
+						required=True)
+	parser.add_argument("-2",'--file2', type=str, metavar='<fastq2>',
+						help='Specify fastq files for recalculation, comma seperated.',
+						required=True)
+
+	parser.add_argument('--coverage', type=float, metavar='<coverage>',
+						help='Specify new coverage.',
+						required=True)
+
+
+	args = parser.parse_args()
+	fastq_files = [args.file1, args.file2]
+	simualte_over_coverage(0.2,1,0.1,1,fastq_files)
+
