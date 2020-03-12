@@ -201,10 +201,13 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files):
 	stats_per_cov = []
 	N50_list =[]
 	for cov in np.arange(start,end,step):
+		print("testing for cov = {} ".format(cov))
 		N50 = 0
 		stats_list = []
 		for i in range(epochs):
 			stats = single_ineration_per_corr(fastq_files,cov)
+			print("###################STATS##########################")
+			print(stats)
 			N50 += stats["N50"]
 			stats_list.append(stats)
 		N50_list.append((cov,N50/epochs))
