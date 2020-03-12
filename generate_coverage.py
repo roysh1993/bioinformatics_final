@@ -193,10 +193,13 @@ def generate_plots(stats_list,N50_list, directory = OUTPUT_DIR):
 
 
 def save_stats(stats,directory_name):
+	file_path= os.path.join(directory_name,"stats.json")
 	if not os.path.exists(directory_name):
 		os.makedirs(directory_name)
-	with open('stats.json', 'w') as fp:
+
+	with open(file_path, 'w') as fp:
 		json.dump(stats, fp)
+
 	return
 
 def simualte_over_coverage(start,end,step,epochs,fastq_files):
@@ -212,8 +215,10 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files):
 			print(stats)
 			N50 += stats["Scaffold Stats"]["N50"]
 			stats_list.append(stats)
+
 		N50_list.append((cov, N50/epochs))
 		stats_list.append((cov,stats_list))
+
 	generate_plots(stats_list,N50_list)
 	# save stats_list
 	save_stats(stats,"EXP_1")
