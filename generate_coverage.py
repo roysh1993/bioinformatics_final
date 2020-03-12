@@ -7,6 +7,7 @@ import assembly_stats
 import numpy as np
 import matplotlib.pyplot as plt
 import shutil
+import json
 OUTPUT_FRAG_1_FILE =  "data/output_frag_1.fastq"
 OUTPUT_FRAG_2_FILE =  "data/output_frag_2.fastq"
 SPADES_EXE_LOCATION = "/data/roy/bio_informatics/SPAdes-3.12.0-Linux/bin/spades.py"
@@ -189,7 +190,12 @@ def generate_plots(stats_list,N50_list):
 
 
 
-
+def save_stats(stats,directory_name):
+	if not os.path.exists(directory_name):
+		os.makedirs(directory_name)
+	with open('stats.json', 'w') as fp:
+		json.dump(stats, fp)
+	return
 
 def simualte_over_coverage(start,end,step,epochs,fastq_files):
 	stats_per_cov = []
@@ -204,6 +210,8 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files):
 		N50_list.append((cov,N50/epochs))
 		stats_list.append((cov,stats_list))
 	generate_plots(stats_list,N50_list,directory=OUTPUT_DIR)
+	# save stats_list
+	save_stats(stats,"EXP_1")
 	print("FINISHED :)")
 	return
 
