@@ -6,6 +6,7 @@ import subprocess
 import assembly_stats
 import numpy as np
 import matplotlib.pyplot as plt
+import shutil
 OUTPUT_FRAG_1_FILE =  "data/output_frag_1.fastq"
 OUTPUT_FRAG_2_FILE =  "data/output_frag_2.fastq"
 SPADES_EXE_LOCATION = "/data/roy/bio_informatics/SPAdes-3.12.0-Linux/bin/spades.py"
@@ -148,7 +149,7 @@ def get_fragments_by_identifier(fastq_file,frag_identifiers,output_filename =OUT
 							frag_data = ""
 
 
-def single_ineration_per_corr(fastq_files, coverage_ratio):
+def single_ineration_per_corr(fastq_files, coverage_ratio,output_dir,DELETE_FILES= True):
 	if coverage_ratio != 1.0:
 		semgented_file1 = OUTPUT_FRAG_1_FILE
 		semgented_file2 = OUTPUT_FRAG_2_FILE
@@ -161,9 +162,13 @@ def single_ineration_per_corr(fastq_files, coverage_ratio):
 		semgented_file1 = "/data/roy/bio_informatics/Staphylococcus_aureus/frag_1.fastq"
 		semgented_file2 = "/data/roy/bio_informatics/Staphylococcus_aureus/frag_2.fastq"
 
-	res = os.system("python3 " + SPADES_EXE_LOCATION +" -1 " + semgented_file1 + " -2 " + semgented_file2 + " -o " + OUTPUT_DIR)
+	res = os.system("python3 " + SPADES_EXE_LOCATION +" -1 " + semgented_file1 + " -2 " + semgented_file2 + " -o " + output_dir)
 # 	get stats of per coverage
-	stats = assembly_stats.calc_stats(os.path.join(OUTPUT_DIR, "scaffolds.fasta"))
+	stats = assembly_stats.calc_stats(os.path.join(output_dir, "scaffolds.fasta"))
+	if DELETE_FILES:
+		shutil.rmtree(output_dir)
+		os.mkdir(output_dir)
+
 # 	TODO add maybe more fields to stats
 	return stats
 
@@ -175,7 +180,7 @@ def generate_plots(stats_list,N50_list):
 		cov_list.append(cov)
 		n_list.append(n50)
 
-	res = plt.plot(cov_list,n_list)
+	res = plt.plot(cov_list, n_list)
 	plt.xlabel("coverage")
 	plt.ylabel("N50 avg")
 	plt.title("N50 per cov")
@@ -218,6 +223,7 @@ if __name__ == '__main__':
 	parser.add_argument("-1",'--file1', type=str, metavar='<fastq1>',
 						help='Specify fastq files for recalculation, comma seperated.',
 						required=True)
+
 	parser.add_argument("-2",'--file2', type=str, metavar='<fastq2>',
 						help='Specify fastq files for recalculation, comma seperated.',
 						required=True)
@@ -225,7 +231,6 @@ if __name__ == '__main__':
 	parser.add_argument('--coverage', type=float, metavar='<coverage>',
 						help='Specify new coverage.',
 						required=True)
-
 
 	args = parser.parse_args()
 	fastq_files = [args.file1, args.file2]
