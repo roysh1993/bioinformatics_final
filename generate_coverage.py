@@ -190,7 +190,7 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files):
 		N50_list.append((cov, N50/epochs))
 		stats_per_cov[cov] = stats_list
 
-	plots.generate_plots(stats_list,N50_list)
+	plots.generate_plots(stats_per_cov,N50_list)
 	# save stats_list
 	plots.save_stats(stats_per_cov,OUTPUT_DIR)
 	print("FINISHED :)")
