@@ -7,10 +7,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def generate_plots(stats_list,N50_list, directory = OUTPUT_DIR):
+def generate_plots(stats_list, directory = OUTPUT_DIR):
     cov = sorted(stats_list.keys())
-    N50_scaffolds = map(lambda x:np.mean([n["Scaffold Stats"]["N50"] for n in stats_list[x]]), cov)
-    N50_contigs = map(lambda x:np.mean([n["Contig Stats"]["N50"] for n in stats_list[x]]), cov)
+    N50_scaffolds =list( map(lambda x:np.mean([n["Scaffold Stats"]["N50"] for n in stats_list[x]]), cov))
+    N50_contigs = list(map(lambda x:np.mean([n["Contig Stats"]["N50"] for n in stats_list[x]]), cov))
 
     print(N50_scaffolds)
     # scaffolds
