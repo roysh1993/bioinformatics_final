@@ -252,5 +252,5 @@ if __name__ == '__main__':
 	# fastq_files = ["data/tiny_frag_1.fastq","data/tiny_frag_1.fastq"]
 
 
-	simualte_over_coverage(0.2,0.55,0.2,1,fastq_files)
+	simualte_over_coverage(0.1,1.0,0.1,1,fastq_files)
 
