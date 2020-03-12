@@ -4,11 +4,12 @@ import random
 import subprocess
 import subprocess
 import assembly_stats
+import numpy as np
+import matplotlib.pyplot as plt
 OUTPUT_FRAG_1_FILE =  "data/output_frag_1.fastq"
 OUTPUT_FRAG_2_FILE =  "data/output_frag_2.fastq"
 SPADES_EXE_LOCATION = "/data/roy/bio_informatics/SPAdes-3.12.0-Linux/bin/spades.py"
 OUTPUT_DIR = "output_dir"
-
 
 
 def count_fragments(fastq_files):
@@ -163,9 +164,39 @@ def single_ineration_per_corr(fastq_files, coverage_ratio):
 	res = os.system("python3 " + SPADES_EXE_LOCATION +" -1 " + semgented_file1 + " -2 " + semgented_file2 + " -o " + OUTPUT_DIR)
 # 	get stats of per coverage
 	stats = assembly_stats.calc_stats(os.path.join(OUTPUT_DIR, "scaffolds.fasta"))
-# 	TODO delete later
-	print(stats)
+# 	TODO add maybe more fields to stats
 	return stats
+
+def generate_plots(stats_list,N50_list):
+	# for i in N50_list:
+	# 	cov,n50 = N50_list
+
+	res = plt.plot(N50_list)
+	plt.xlabel("coverage")
+	plt.ylabel("N50 avg")
+	plt.title("N50 per cov")
+	plt.savefig(os.path.join(OUTPUT_DIR,"N50_fig.png"))
+	return
+
+
+
+
+
+def simualte_over_coverage(start,end,step,epochs,fastq_files):
+	stats_per_cov = []
+	N50_list =[]
+	for cov in np.arange(start,end,step):
+		N50 = 0
+		stats_list = []
+		for i in range(epochs):
+			stats = single_ineration_per_corr(fastq_files,cov)
+			N50 += stats["N50"]
+			stats_list.append(stats)
+		N50_list.append((cov,N50/epochs))
+		stats_list.append((cov,stats_list))
+	generate_plots(stats_list,N50_list,directory=OUTPUT_DIR)
+	print("FINISHED :)")
+	return
 
 #
 
@@ -175,26 +206,27 @@ def single_ineration_per_corr(fastq_files, coverage_ratio):
 
 
 if __name__ == '__main__':
-	import argparse
-
-	parser = argparse.ArgumentParser(description='Generate new converage dataset',
-									 formatter_class=argparse.RawTextHelpFormatter)
-
-	parser.add_argument("-1",'--file1', type=str, metavar='<fastq1>',
-						help='Specify fastq files for recalculation, comma seperated.',
-						required=True)
-	parser.add_argument("-2",'--file2', type=str, metavar='<fastq2>',
-						help='Specify fastq files for recalculation, comma seperated.',
-						required=True)
-
-	parser.add_argument('--coverage', type=float, metavar='<coverage>',
-						help='Specify new coverage.',
-						required=True)
-
-	args = parser.parse_args()
-	fastq_files = [args.file1, args.file2]
-	single_ineration_per_corr(fastq_files,args.coverage)
-
+	# import argparse
+	#
+	# parser = argparse.ArgumentParser(description='Generate new converage dataset',
+	# 								 formatter_class=argparse.RawTextHelpFormatter)
+	#
+	# parser.add_argument("-1",'--file1', type=str, metavar='<fastq1>',
+	# 					help='Specify fastq files for recalculation, comma seperated.',
+	# 					required=True)
+	# parser.add_argument("-2",'--file2', type=str, metavar='<fastq2>',
+	# 					help='Specify fastq files for recalculation, comma seperated.',
+	# 					required=True)
+	#
+	# parser.add_argument('--coverage', type=float, metavar='<coverage>',
+	# 					help='Specify new coverage.',
+	# 					required=True)
+	#
+	# args = parser.parse_args()
+	# fastq_files = [args.file1, args.file2]
+	# single_ineration_per_corr(fastq_files,args.coverage)
+	for i in np.arange(1,10,1):
+		print(i)
 
 	#
 	# fastq_files =["data/tiny_frag_1.fastq", "data/tiny_frag_2.fastq"]
