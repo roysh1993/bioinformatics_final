@@ -10,11 +10,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import shutil
 import json
-OUTPUT_FRAG_1_FILE =  "data/output_frag_1.fastq"
-OUTPUT_FRAG_2_FILE =  "data/output_frag_2.fastq"
-SPADES_EXE_LOCATION = "/data/roy/bio_informatics/SPAdes-3.12.0-Linux/bin/spades.py"
-OUTPUT_DIR = "output_dir"
-
+from settings import *
+import plots
 
 def count_fragments(fastq_files):
 	frag_count = 0
@@ -175,35 +172,9 @@ def single_ineration_per_corr(fastq_files, coverage_ratio,output_dir=OUTPUT_DIR,
 # 	TODO add maybe more fields to stats
 	return stats
 
-def generate_plots(stats_list,N50_list, directory = OUTPUT_DIR):
-	cov_list = []
-	n_list = []
-	for tuple in N50_list:
-		cov,n50 = tuple
-		cov_list.append(cov)
-		n_list.append(n50)
-
-	plt.plot(cov_list, n_list)
-	plt.xlabel("coverage")
-	plt.ylabel("N50 avg")
-	plt.title("N50 per cov")
-	plt.savefig(os.path.join(directory,"N50_fig.png"))
-	return
-
-
-
-def save_stats(stats,directory_name):
-	file_path= os.path.join(directory_name,"stats.json")
-	if not os.path.exists(directory_name):
-		os.makedirs(directory_name)
-
-	with open(file_path, 'w') as fp:
-		json.dump(stats, fp)
-
-	return
 
 def simualte_over_coverage(start,end,step,epochs,fastq_files):
-	stats_per_cov = []
+	stats_per_cov = {}
 	N50_list =[]
 	for cov in np.arange(start,end,step):
 		print("testing for cov = {} ".format(cov))
@@ -217,11 +188,11 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files):
 			stats_list.append(stats)
 
 		N50_list.append((cov, N50/epochs))
-		stats_list.append((cov,stats_list))
+		stats_per_cov[cov] = stats_list
 
-	generate_plots(stats_list,N50_list)
+	plots.generate_plots(stats_list,N50_list)
 	# save stats_list
-	save_stats(stats,OUTPUT_DIR)
+	plots.save_stats(stats_per_cov,OUTPUT_DIR)
 	print("FINISHED :)")
 	return
 
@@ -257,5 +228,5 @@ if __name__ == '__main__':
 	# fastq_files = ["data/tiny_frag_1.fastq","data/tiny_frag_1.fastq"]
 
 
-	simualte_over_coverage(0.1,1.00001,0.1,1,fastq_files)
+	simualte_over_coverage(START_COV,END_COV,COV_INTERVAL,NUM_OF_EPOCHS,fastq_files)
 
