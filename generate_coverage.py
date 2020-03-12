@@ -221,7 +221,7 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files):
 
 	generate_plots(stats_list,N50_list)
 	# save stats_list
-	save_stats(stats,"EXP_1")
+	save_stats(stats,OUTPUT_DIR)
 	print("FINISHED :)")
 	return
 
