@@ -149,9 +149,9 @@ def get_fragments_by_identifier(fastq_file,frag_identifiers,output_filename =OUT
 							frag_data = ""
 
 
-def single_ineration_per_corr(fastq_files, coverage_ratio,output_dir= OUTPUT_DIR,DELETE_FILES= True):
+def single_ineration_per_corr(fastq_files, coverage_ratio,output_dir=OUTPUT_DIR, DELETE_FILES= True):
 	if coverage_ratio != 1.0:
-		semgented_file1 = OUTPUT_FRAG_2_FILE
+		semgented_file1 = OUTPUT_FRAG_1_FILE
 		semgented_file2 = OUTPUT_FRAG_2_FILE
 		total_reads_count = count_fragments(fastq_files)
 		new_reads_count = calculate_new_fragment_count(total_reads_count,coverage_ratio)
@@ -233,7 +233,6 @@ if __name__ == '__main__':
 						required=True)
 	args = parser.parse_args()
 	fastq_files = [args.file1, args.file2]
-
 
 
 
