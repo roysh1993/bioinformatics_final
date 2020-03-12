@@ -43,7 +43,7 @@ def count_fragments(fastq_files):
 
 
 def calculate_new_fragment_count(total_frag_count,new_converage):
-	return round(total_frag_count*new_converage)
+	return int(total_frag_count*new_converage)
 
 
 def get_random_fragments(fastq_files,total_frag_count,new_frag_count):
@@ -149,9 +149,9 @@ def get_fragments_by_identifier(fastq_file,frag_identifiers,output_filename =OUT
 							frag_data = ""
 
 
-def single_ineration_per_corr(fastq_files, coverage_ratio,output_dir,DELETE_FILES= True):
+def single_ineration_per_corr(fastq_files, coverage_ratio,output_dir= OUTPUT_DIR,DELETE_FILES= True):
 	if coverage_ratio != 1.0:
-		semgented_file1 = OUTPUT_FRAG_1_FILE
+		semgented_file1 = OUTPUT_FRAG_2_FILE
 		semgented_file2 = OUTPUT_FRAG_2_FILE
 		total_reads_count = count_fragments(fastq_files)
 		new_reads_count = calculate_new_fragment_count(total_reads_count,coverage_ratio)
@@ -215,24 +215,26 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files):
 
 
 if __name__ == '__main__':
-	import argparse
+	# import argparse
+	#
+	# parser = argparse.ArgumentParser(description='Generate new converage dataset',
+	# 								 formatter_class=argparse.RawTextHelpFormatter)
+	#
+	# parser.add_argument("-1",'--file1', type=str, metavar='<fastq1>',
+	# 					help='Specify fastq files for recalculation, comma seperated.',
+	# 					required=True)
+	#
+	# parser.add_argument("-2",'--file2', type=str, metavar='<fastq2>',
+	# 					help='Specify fastq files for recalculation, comma seperated.',
+	# 					required=True)
+	#
+	# parser.add_argument('--coverage', type=float, metavar='<coverage>',
+	# 					help='Specify new coverage.',
+	# 					required=True)
+	# args = parser.parse_args()
+	# fastq_files = [args.file1, args.file2]
+	fastq_files = ["data/tiny_frag_1.fastq","data/tiny_frag_1.fastq"]
 
-	parser = argparse.ArgumentParser(description='Generate new converage dataset',
-									 formatter_class=argparse.RawTextHelpFormatter)
 
-	parser.add_argument("-1",'--file1', type=str, metavar='<fastq1>',
-						help='Specify fastq files for recalculation, comma seperated.',
-						required=True)
-
-	parser.add_argument("-2",'--file2', type=str, metavar='<fastq2>',
-						help='Specify fastq files for recalculation, comma seperated.',
-						required=True)
-
-	parser.add_argument('--coverage', type=float, metavar='<coverage>',
-						help='Specify new coverage.',
-						required=True)
-
-	args = parser.parse_args()
-	fastq_files = [args.file1, args.file2]
-	simualte_over_coverage(0.2,1,0.1,1,fastq_files)
+	simualte_over_coverage(0.2,1.0,0.1,1,fastq_files)
 
