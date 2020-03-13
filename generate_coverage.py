@@ -173,24 +173,24 @@ def single_ineration_per_corr(fastq_files, coverage_ratio,output_dir=OUTPUT_DIR,
 	return stats
 
 
-def simualte_over_coverage(start,end,step,epochs,fastq_files):
+def simualte_over_coverage(start,end,step,epochs,fastq_files,output_dir=OUTPUT_DIR):
 	stats_per_cov = {}
 	for cov in np.arange(start,end,step):
 		print("testing for cov = {} ".format(cov))
 		stats_list = []
 		for i in range(epochs):
 			print("EPHOCH: {} with cov {}".format(i,cov))
-			stats = single_ineration_per_corr(fastq_files,cov)
+			stats = single_ineration_per_corr(fastq_files,cov,output_dir=output_dir)
 			print("###################STATS##########################")
 			print(stats)
 			stats_list.append(stats)
 		#save stats
-		plots.save_stats(stats_per_cov, OUTPUT_DIR)
-		print("stats saved at {}".format(OUTPUT_DIR))
+		plots.save_stats(stats_per_cov, output_dir)
+		print("stats saved at {}".format(output_dir))
 		stats_per_cov[cov] = stats_list
 
-	plots.generate_plots(stats_per_cov)
-	print("plots saved at {}".format(OUTPUT_DIR))
+	plots.generate_plots(stats_per_cov,directory=output_dir)
+	print("plots saved at {}".format(output_dir))
 
 	# save stats_list
 	print("FINISHED :)")
@@ -220,13 +220,21 @@ if __name__ == '__main__':
 	parser.add_argument('--coverage', type=float, metavar='<coverage>',
 						help='Specify new coverage.',
 						required=True)
+	parser.add_argument('-o','--output', type=str, metavar='<output>',
+						help='Specify new coverage.',
+						required=False)
 	args = parser.parse_args()
 	fastq_files = [args.file1, args.file2]
+	output_dir = OUTPUT_DIR
+	if args.output:
+		print("here")
+		output_dir = args.output
+	print("not here")
 
 
-
+	print("saving into directory- {}".format(output_dir))
 	# fastq_files = ["data/tiny_frag_1.fastq","data/tiny_frag_1.fastq"]
 
 
-	simualte_over_coverage(START_COV,END_COV,COV_INTERVAL,NUM_OF_EPOCHS,fastq_files)
+	simualte_over_coverage(START_COV,END_COV,COV_INTERVAL,NUM_OF_EPOCHS,fastq_files,output_dir= output_dir)
 
