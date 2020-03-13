@@ -150,7 +150,7 @@ def get_fragments_by_identifier(fastq_file,frag_identifiers,output_filename =OUT
 
 
 def single_ineration_per_corr(fastq_files, coverage_ratio,output_dir=OUTPUT_DIR, DELETE_FILES= True):
-	if coverage_ratio != 1.0:
+	if coverage_ratio <= 1.0:
 		semgented_file1 = OUTPUT_FRAG_1_FILE
 		semgented_file2 = OUTPUT_FRAG_2_FILE
 		total_reads_count = count_fragments(fastq_files)
@@ -159,8 +159,9 @@ def single_ineration_per_corr(fastq_files, coverage_ratio,output_dir=OUTPUT_DIR,
 		get_random_fragments(fastq_files,total_reads_count,new_reads_count)
 		#run spades on sampled data
 	else:
-		semgented_file1 = "/data/roy/bio_informatics/Staphylococcus_aureus/frag_1.fastq"
-		semgented_file2 = "/data/roy/bio_informatics/Staphylococcus_aureus/frag_2.fastq"
+		# original reads
+		semgented_file1 = fastq_files[0]
+		semgented_file2 = fastq_files[1]
 
 	res = os.system("python3 " + SPADES_EXE_LOCATION +" -1 " + semgented_file1 + " -2 " + semgented_file2 + " -o " + output_dir)
 # 	get stats of per coverage
