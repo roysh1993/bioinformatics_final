@@ -185,15 +185,15 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files,output_dir=OUTPUT_D
 			print("###################STATS##########################")
 			print(stats)
 			stats_list.append(stats)
-		#save stats
-		plots.save_stats(stats_per_cov, output_dir)
-		print("stats saved at {}".format(output_dir))
+
 		stats_per_cov[cov] = stats_list
 
+	#save stats and plots
+	plots.save_stats(stats_per_cov, output_dir)
+	print("stats saved at {}".format(output_dir))
 	plots.generate_plots(stats_per_cov,directory=output_dir)
 	print("plots saved at {}".format(output_dir))
 
-	# save stats_list
 	print("FINISHED :)")
 	return
 
@@ -234,8 +234,7 @@ if __name__ == '__main__':
 
 
 	print("saving into directory- {}".format(output_dir))
-	# fastq_files = ["data/tiny_frag_1.fastq","data/tiny_frag_1.fastq"]
-
+	# fastq_files = ["data/short_1.fastq","data/short_2.fastq"]
 
 	simualte_over_coverage(START_COV,END_COV,COV_INTERVAL,NUM_OF_EPOCHS,fastq_files,output_dir= output_dir)
 
