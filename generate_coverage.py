@@ -180,16 +180,16 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files,output_dir=OUTPUT_D
 	for cov in np.arange(start,end,step):
 		print("testing for cov = {} ".format(cov))
 		# create a directory for cov
-		cov_dir = os.path.join(output_dir,"Exp_"+str(cov))
+		cov_dir = os.path.join(output_dir,"Cov_"+str(cov))
 		os.mkdir(cov_dir)
 		stats_list = []
 		for i in range(epochs):
 			print("EPHOCH: {} with cov {}".format(i+1,cov))
 			# make dir for experiment
-			experiment_dir = os.path.join(cov_dir,str(i+1))
+			experiment_dir = os.path.join(cov_dir,"Exp_"+str(i+1))
 			os.mkdir(cov_dir)
 
-			stats = single_ineration_per_corr(fastq_files,cov,output_dir=cov_dir)
+			stats = single_ineration_per_corr(fastq_files,cov,output_dir=experiment_dir)
 			print("###################STATS##########################")
 			print(stats)
 			stats_list.append(stats)
