@@ -187,7 +187,7 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files,output_dir=OUTPUT_D
 			print("EPHOCH: {} with cov {}".format(i+1,cov))
 			# make dir for experiment
 			experiment_dir = os.path.join(cov_dir,"Exp_"+str(i+1))
-			os.mkdir(cov_dir)
+			os.mkdir(experiment_dir)
 
 			stats = single_ineration_per_corr(fastq_files,cov,output_dir=experiment_dir)
 			print("###################STATS##########################")
