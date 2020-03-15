@@ -180,7 +180,7 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files,output_dir=OUTPUT_D
 	for cov in np.arange(start,end,step):
 		print("testing for cov = {} ".format(cov))
 		# create a directory for cov
-		cov_dir = os.path.join(OUTPUT_DIR,str(cov))
+		cov_dir = os.path.join(output_dir,str(cov))
 		os.mkdir(cov_dir)
 		stats_list = []
 		for i in range(epochs):
