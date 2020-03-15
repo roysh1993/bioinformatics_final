@@ -149,7 +149,7 @@ def get_fragments_by_identifier(fastq_file,frag_identifiers,output_filename =OUT
 							frag_data = ""
 
 
-def single_ineration_per_corr(fastq_files, coverage_ratio,output_dir=OUTPUT_DIR, DELETE_FILES= True):
+def single_ineration_per_corr(fastq_files, coverage_ratio,output_dir=OUTPUT_DIR, DELETE_FILES= False):
 	if coverage_ratio <= 1.0:
 		semgented_file1 = OUTPUT_FRAG_1_FILE
 		semgented_file2 = OUTPUT_FRAG_2_FILE
@@ -162,6 +162,7 @@ def single_ineration_per_corr(fastq_files, coverage_ratio,output_dir=OUTPUT_DIR,
 		# original reads
 		semgented_file1 = fastq_files[0]
 		semgented_file2 = fastq_files[1]
+
 
 	res = os.system("python3 " + SPADES_EXE_LOCATION +" -1 " + semgented_file1 + " -2 " + semgented_file2 + " -o " + output_dir)
 # 	get stats of per coverage
@@ -178,10 +179,17 @@ def simualte_over_coverage(start,end,step,epochs,fastq_files,output_dir=OUTPUT_D
 	stats_per_cov = {}
 	for cov in np.arange(start,end,step):
 		print("testing for cov = {} ".format(cov))
+		# create a directory for cov
+		cov_dir = os.path.join(OUTPUT_DIR,str(cov))
+		os.mkdir(cov_dir)
 		stats_list = []
 		for i in range(epochs):
-			print("EPHOCH: {} with cov {}".format(i,cov))
-			stats = single_ineration_per_corr(fastq_files,cov,output_dir=output_dir)
+			print("EPHOCH: {} with cov {}".format(i+1,cov))
+			# make dir for experiment
+			experiment_dir = os.path.join(cov_dir,str(i+1))
+			os.mkdir(cov_dir)
+
+			stats = single_ineration_per_corr(fastq_files,cov,output_dir=cov_dir)
 			print("###################STATS##########################")
 			print(stats)
 			stats_list.append(stats)
