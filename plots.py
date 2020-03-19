@@ -1,6 +1,7 @@
 from settings import *
 import json
 import os
+import shutil
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -34,3 +35,24 @@ def save_stats(stats,directory_name):
     with open(file_path, 'w') as fp:
         json.dump(stats, fp)
     return
+
+
+# def temp_func():
+#     rootdir = '/home/roy.shafir/res/Staphylococcus_aureus_output'
+#     # rootdir = "/Users/royshafir/Google Drive/CS _Degree/Technion/First Year/Intro To Bioinformatics/Final Project/bioinformatics_final"
+#     for subdir, dirs, files in os.walk(rootdir):
+#         if subdir.endswith(".git"):
+#             print("HEREEEE")
+#             print(subdir)
+#             continue
+#
+#         if subdir.endswith("corrected"):
+#             shutil.rmtree(subdir)
+#             print("HERE")
+#         # for file in files:
+#         #     a = os.path.join(subdir, file)
+#         #     if not file.endswith(".fasta") or file.endswith(".json"):
+#         #         os.remove(a)
+#
+# if __name__ =='__main__':
+#     temp_func()
