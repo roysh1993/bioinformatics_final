@@ -1,0 +1,72 @@
+---
+max read length: 101
+nomerge max read length: 101
+average read length: 98.5368
+average coverage: 1.85927
+libraries:       
+    - type:            paired-end
+      orientation:     fr
+      left reads:      
+        - /data/roy/bio_informatics/bioinformatics_final/Staphylococcus_aureus_output/Cov_0.1/Exp_6/corrected/output_frag_1.00.0_0.cor.fastq.gz
+      right reads:     
+        - /data/roy/bio_informatics/bioinformatics_final/Staphylococcus_aureus_output/Cov_0.1/Exp_6/corrected/output_frag_2.00.0_0.cor.fastq.gz
+      single reads:    
+        - /data/roy/bio_informatics/bioinformatics_final/Staphylococcus_aureus_output/Cov_0.1/Exp_6/corrected/output_frag__unpaired.00.0_0.cor.fastq.gz
+      data:            
+        unmerged read length: 101
+        merged read length: 0
+        insert size mean: 169.666
+        insert size deviation: 21.5552
+        insert size left quantile: 143
+        insert size right quantile: 198
+        insert size median: 168
+        insert size mad: 16
+        insert size distribution: { 58: 2, 59: 1, 61: 2, 64: 2, 65: 1, 
+                                    67: 1, 71: 2, 73: 2, 77: 2, 78: 3, 
+                                    79: 3, 80: 1, 82: 1, 86: 1, 87: 2, 
+                                    89: 2, 91: 1, 94: 2, 95: 1, 96: 1, 
+                                    97: 1, 98: 2, 99: 3, 101: 2, 102: 4, 
+                                    103: 3, 104: 2, 105: 2, 106: 2, 107: 1, 
+                                    108: 3, 109: 1, 110: 6, 111: 3, 112: 2, 
+                                    113: 3, 114: 4, 115: 8, 116: 4, 117: 4, 
+                                    118: 8, 119: 7, 120: 7, 121: 9, 122: 13, 
+                                    123: 10, 124: 20, 125: 14, 126: 18, 
+                                    127: 28, 128: 32, 129: 43, 130: 44, 
+                                    131: 59, 132: 61, 133: 85, 134: 106, 
+                                    135: 91, 136: 107, 137: 126, 138: 135, 
+                                    139: 136, 140: 175, 141: 167, 142: 208, 
+                                    143: 210, 144: 236, 145: 222, 146: 243, 
+                                    147: 264, 148: 266, 149: 292, 150: 268, 
+                                    151: 287, 152: 299, 153: 334, 154: 319, 
+                                    155: 308, 156: 325, 157: 302, 158: 342, 
+                                    159: 336, 160: 348, 161: 339, 162: 318, 
+                                    163: 349, 164: 360, 165: 321, 166: 339, 
+                                    167: 314, 168: 339, 169: 315, 170: 317, 
+                                    171: 328, 172: 339, 173: 333, 174: 295, 
+                                    175: 296, 176: 315, 177: 294, 178: 294, 
+                                    179: 285, 180: 314, 181: 277, 182: 239, 
+                                    183: 237, 184: 243, 185: 284, 186: 228, 
+                                    187: 247, 188: 251, 189: 254, 190: 240, 
+                                    191: 219, 192: 229, 193: 209, 194: 206, 
+                                    195: 193, 196: 182, 197: 175, 198: 157, 
+                                    199: 148, 200: 149, 201: 148, 202: 140, 
+                                    203: 115, 204: 102, 205: 115, 206: 104, 
+                                    207: 95, 208: 85, 209: 81, 210: 59, 
+                                    211: 45, 212: 57, 213: 53, 214: 40, 
+                                    215: 44, 216: 32, 217: 24, 218: 25, 
+                                    219: 20, 220: 26, 221: 17, 222: 11, 
+                                    223: 6, 224: 14, 225: 8, 226: 10, 227: 11, 
+                                    228: 11, 229: 5, 230: 3, 231: 2, 232: 6, 
+                                    233: 2, 234: 6, 235: 2, 236: 6, 237: 3, 
+                                    238: 1, 239: 3, 240: 1, 241: 1, 243: 2, 
+                                    244: 3, 245: 2, 246: 3, 248: 2, 249: 3, 
+                                    250: 2, 252: 3, 253: 3, 257: 2, 258: 1, 
+                                    262: 2, 263: 2, 264: 1, 267: 1, 268: 1, 
+                                    270: 1, 271: 1, 273: 1, 275: 1, 276: 1 }
+        pi threshold:    0
+        binary converted: true
+        single reads mapped: false
+        library index:   0
+        number of reads: 97387
+        total nucleotides: 9596200
+...

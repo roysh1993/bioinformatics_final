@@ -1,0 +1,6 @@
+- "left reads":
+  - "/data/roy/bio_informatics/bioinformatics_final/data/output_frag_1.fastq"
+  "orientation": "fr"
+  "right reads":
+  - "/data/roy/bio_informatics/bioinformatics_final/data/output_frag_2.fastq"
+  "type": "paired-end"

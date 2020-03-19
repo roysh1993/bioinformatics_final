@@ -1,0 +1,31 @@
+---
+max read length: 101
+nomerge max read length: 101
+average read length: 98.5551
+average coverage: 4.61608
+libraries:       
+    - type:            paired-end
+      orientation:     fr
+      left reads:      
+        - /data/roy/bio_informatics/bioinformatics_final/Staphylococcus_aureus_output/Cov_0.2/Exp_4/corrected/output_frag_1.00.0_0.cor.fastq.gz
+      right reads:     
+        - /data/roy/bio_informatics/bioinformatics_final/Staphylococcus_aureus_output/Cov_0.2/Exp_4/corrected/output_frag_2.00.0_0.cor.fastq.gz
+      single reads:    
+        - /data/roy/bio_informatics/bioinformatics_final/Staphylococcus_aureus_output/Cov_0.2/Exp_4/corrected/output_frag__unpaired.00.0_0.cor.fastq.gz
+      data:            
+        unmerged read length: 101
+        merged read length: 0
+        insert size mean: 0
+        insert size deviation: 0
+        insert size left quantile: 0
+        insert size right quantile: 0
+        insert size median: 0
+        insert size mad: 0
+        insert size distribution: {  }
+        pi threshold:    0
+        binary converted: true
+        single reads mapped: false
+        library index:   0
+        number of reads: 211570
+        total nucleotides: 20851307
+...

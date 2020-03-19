@@ -1,0 +1,5 @@
+
+=== Error correction and assembling warnings:
+ * 0:00:09.295    96M / 4G    WARN    General                 (kmer_coverage_model.cpp   : 327)   Valley value was estimated improperly, reset to 2
+ * 0:00:09.296    96M / 4G    WARN    General                 (kmer_coverage_model.cpp   : 366)   Failed to determine erroneous kmer threshold. Threshold set to: 2
+======= Warnings saved to /data/roy/bio_informatics/bioinformatics_final/Staphylococcus_aureus_output/Cov_0.4/Exp_3/warnings.log

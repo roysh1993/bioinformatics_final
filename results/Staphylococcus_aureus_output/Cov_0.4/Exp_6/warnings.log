@@ -1,0 +1,5 @@
+
+=== Error correction and assembling warnings:
+ * 0:00:05.408   104M / 4G    WARN    General                 (kmer_coverage_model.cpp   : 366)   Failed to determine erroneous kmer threshold. Threshold set to: 29
+ * 0:00:10.876   140M / 4G    WARN    General                 (simplification.cpp        : 479)   The determined erroneous connection coverage threshold may be determined improperly
+======= Warnings saved to /data/roy/bio_informatics/bioinformatics_final/Staphylococcus_aureus_output/Cov_0.4/Exp_6/warnings.log
